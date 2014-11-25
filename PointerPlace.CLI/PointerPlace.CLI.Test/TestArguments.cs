@@ -60,6 +60,24 @@ namespace PointerPlace.CLI.Test
         }
 
         [TestMethod]
+        public void TestConcurrentFlag()
+        {
+            var args = new string[]
+            {
+                "/Hello", "World!", "/ImAFlag", "/GoodbyeFlag"
+            };
+
+            var arguments = Arguments.FromArgs(args);
+
+            Assert.IsTrue(arguments.Count == 3);
+            Assert.IsTrue(arguments.ContainsKey("ImAFlag"));
+
+            var imAFlag = arguments["ImAFlag"];
+
+            Assert.IsTrue(imAFlag.IsFlag);
+        }
+
+        [TestMethod]
         public void TestTrailingArgument()
         {
             var args = new string[]

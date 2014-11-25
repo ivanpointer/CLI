@@ -11,8 +11,7 @@ namespace PointerPlace.CLI
     {
         public string Name { get; private set; }
         public bool IsFlag { get; set; }
-        public string Description { get; set; }
-        public bool IsRequired { get; set; }
+        public int Index { get; set; }
 
         public string Value { get; set; }
 

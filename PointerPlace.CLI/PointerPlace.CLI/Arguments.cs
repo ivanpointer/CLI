@@ -15,7 +15,6 @@ namespace PointerPlace.CLI
 	public class Arguments : Dictionary<string, Argument>
 	{
 		private static readonly Regex SingleArgumentPattern = new Regex(@"^/(?<ArgumentName>[\w\d]+)$", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-		private static readonly Regex FullArgumentPattern = new Regex(@"^/(?<ArgumentName>[\w\d]+)=(?<ArgumentValue>[.]+)$", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
 		public static Arguments FromArgs(string[] args)
 		{
@@ -34,20 +33,7 @@ namespace PointerPlace.CLI
 				for (int index = 0; index < args.Length; index++)
 				{
 					argument = args[index];
-					if (FullArgumentPattern.IsMatch(argument))
-					{
-						match = FullArgumentPattern.Match(argument);
-						argumentName = match.Groups["ArgumentName"].Value;
-						argumentValue = match.Groups["ArgumentValue"].Value;
-
-						nextArgument = new Argument(argumentName);
-						nextArgument.Value = argumentValue;
-						arguments[argumentName] = nextArgument;
-
-						previousArgument = nextArgument;
-						previousValueSet = true;
-					}
-					else if (SingleArgumentPattern.IsMatch(argument))
+					if (SingleArgumentPattern.IsMatch(argument))
 					{
 						if (previousArgument != null && previousValueSet == false)
 							previousArgument.IsFlag = true;
@@ -55,7 +41,10 @@ namespace PointerPlace.CLI
 						match = SingleArgumentPattern.Match(argument);
 						argumentName = match.Groups["ArgumentName"].Value;
 
-						nextArgument = new Argument(argumentName);
+                        nextArgument = new Argument(argumentName)
+                        {
+                            Index = index
+                        };
 						arguments[argumentName] = nextArgument;
 
 						previousArgument = nextArgument;
@@ -82,6 +71,11 @@ namespace PointerPlace.CLI
 			}
 
 			return arguments;
+		}
+
+		public static string FormatArgumentName(string argumentName)
+		{
+			return String.Format("/{0}", argumentName);
 		}
 
 	}
