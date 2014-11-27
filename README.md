@@ -1,7 +1,11 @@
 # CLI (Command Line Interface)
+_A command line interface utility written in and for C#_
+
+![Logo](http://i.imgur.com/bchzEGf.png)
+
 The CLI utility provides a quick and simple way to automatically parse arguments and wire up different commands for the command line process.  The CLI also defines a way to setup a clean and formatted "Usage" printout for the CLI.  This is best suited for "job" or "process" style applications, as the interface provided is quite simple.  However, this should address the majority of all console applications.
 
-Two methods of defining commands are provided by the CLI utility; a simpler and more vage method using delegates, and a more difinitive and precise method.  I'll walk through using each with an example here, starting with the simpler method.
+Two methods of defining commands are provided by the CLI utility; a simpler and more vague method using delegates, and a more definitive and precise method. I'll walk through using each with an example here, starting with the simpler method.
 
 ## Arguments
 The CLI utility provides a couple classes `Argument` and `Arguments` which assist in parsing the `string[] args` arguments passed to a console application from the command line. `Argument` defines a single argument, and `Arguments` is a dictionary which houses the `Argument` instances.  These are used as an integral part of the CLI utility, so let's a deeper look into these objects.
@@ -21,11 +25,11 @@ The `Argument` class represents a single argument on the command line.  Let's st
 8. **IsArgumentSet**: Another "helper" method used to determine if a value is set for the argument.  This differs from `IsSet` in that a `null` argument can be passed in.  This simply protects against null arguments.
 
 ### Arguments Dictionary
-The `Arguments` dictionary is an extention of `Dictionary<string, Argument>` which is used to parse and house the arguments from the command line.  There are only two main functionalities of the `Arguments` dictionary that are extensions over the standard dictionary behavior.  Let's take a look at the function signatures:
+The `Arguments` dictionary is an extension of `Dictionary<string, Argument>` which is used to parse and house the arguments from the command line.  There are only two main functionalities of the `Arguments` dictionary that are extensions over the standard dictionary behavior.  Let's take a look at the function signatures:
 
 ![Arguments Dictionary](http://i.imgur.com/Y0o9deK.png)
 
-1. **FromArgs**: This function is used to create a new instance of `Arguments` from the given `string[] args` which are intended to be recieved from the command line in the `Main` function.  The `FromArgs` function allows the implementer to optionally supply an escape character and an ignore case setting.  `escapeChar` is the escape character that is used to signify the command and argument names.  The escape character is defaulted to `/`.  Command and argument names are prefixed with this value, whereas value arguments are not.  The `ignoreCase` attribute is used to control whether the command and argument names are case insensitive.  This defaults to true, indicating that the command and argument names are to be treated in a case insensitive manner.
+1. **FromArgs**: This function is used to create a new instance of `Arguments` from the given `string[] args` which are intended to be received from the command line in the `Main` function.  The `FromArgs` function allows the implementer to optionally supply an escape character and an ignore case setting.  `escapeChar` is the escape character that is used to signify the command and argument names.  The escape character is defaulted to `/`.  Command and argument names are prefixed with this value, whereas value arguments are not.  The `ignoreCase` attribute is used to control whether the command and argument names are case insensitive.  This defaults to true, indicating that the command and argument names are to be treated in a case insensitive manner.
 2. **FormatArgumentName**: This function is used to format a given argument name into the format expected on the command line using the provided escape character.  The static version of this function allows you to specify the `escapeChar` used for the argument name.  The instance version of this function uses the escape character assigned to this instance of `Arguments`
 
 ### Arguments Parsing
@@ -35,7 +39,7 @@ Take a look at the following example argument line:
 
 The things to note:  
 
-1. The command and arguments are preceeded, or escaped by the escape character.
+1. The command and arguments are preceded, or escaped by the escape character.
 2. The first argument is expected to be escaped and signifies the command.  It will be included in the arguments as a flag in the function body of the commands.
 3. Arguments that are not followed by a value are added as flags.  I.E. `IsFlag` is set to `true`.
 4. Spaces can be included in argument values by escaping them with quotes.
