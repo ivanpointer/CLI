@@ -28,6 +28,19 @@ The `Arguments` dictionary is an extention of `Dictionary<string, Argument>` whi
 1. **FromArgs**: This function is used to create a new instance of `Arguments` from the given `string[] args` which are intended to be recieved from the command line in the `Main` function.  The `FromArgs` function allows the implementer to optionally supply an escape character and an ignore case setting.  `escapeChar` is the escape character that is used to signify the command and argument names.  The escape character is defaulted to `/`.  Command and argument names are prefixed with this value, whereas value arguments are not.  The `ignoreCase` attribute is used to control whether the command and argument names are case insensitive.  This defaults to true, indicating that the command and argument names are to be treated in a case insensitive manner.
 2. **FormatArgumentName**: This function is used to format a given argument name into the format expected on the command line using the provided escape character.  The static version of this function allows you to specify the `escapeChar` used for the argument name.  The instance version of this function uses the escape character assigned to this instance of `Arguments`
 
+### Arguments Parsing
+Take a look at the following example argument line:
+
+`/Command /FirstArgument firstValue /ImAFlag /ThirdArgument "third argument value" /ImAList listval1 listval2 3 /ImAnotherFlag`
+
+The things to note:  
+
+1. The command and arguments are preceeded, or escaped by the escape character.
+2. The first argument is expected to be escaped and signifies the command.  It will be included in the arguments as a flag in the function body of the commands.
+3. Arguments that are not followed by a value are added as flags.  I.E. `IsFlag` is set to `true`.
+4. Spaces can be included in argument values by escaping them with quotes.
+5. Arguments followed by multiple values will be converted to a single argument with the values assigned to the `Values` member of the argument.
+
 ## Using Delegate Functions
 The first approach allows for a simpler, slimmer solution and is best suited for smaller console apps that are just used to do just a few small tasks.  Everything can be contained inside the `Main` method of `Program.cs`.  Let's get right down to it:
 
@@ -40,6 +53,7 @@ The first approach allows for a simpler, slimmer solution and is best suited for
   2. **ignoreCase**: Ignore case indicates whether or not to use case insensitive searches on the command and argument names.  By default, ignore case is enabled, meaning command and argument names are not case sensitive.
 
 ## Using Classes and Attributes
+### A Simple Example
 Classes and attributes are a more advanced method of using the CLI utility.  It is best suited for a larger or more "public facing" console application and allows for more encapsulation and modularizaiton.  This approach also provides more methods for including more detailed information in the usage printout, making this more useful as a "shared" interface.  Let's start by taking a look at the simplest implementation of a class decorated with the attributes:
 
 ![Command Class Example](http://i.imgur.com/qXMv8GK.png)
@@ -48,3 +62,23 @@ Classes and attributes are a more advanced method of using the CLI utility.  It 
 2. Next, you will need to define your arguments.  These are properties decorated with the `Argument` attribute.  The types of the attributes are restricted: either a `ICollection<string>` or primitive types, such as `string`, `int` or any other type directly convertable from a `string` are supported.
 3. The last piece to do is to flesh out the body of the `ExecuteCommand(Arguments arguments)` function.  This function performs some action and returns an integer which is intended to be used as the exit code for the application.
 
+### A Full Example
+The attributes allow for more more fine-tuned control of the commands.  Let's jump into an example:
+
+![Full Command Class Example](http://i.imgur.com/itpZp97.png)
+
+1. The `Command` attribute has three optional settings:
+  1. **Description**: Provides a description for the command.  This is used for the usage printout to describe the command.  This walkthrough shows an example of the usage printout later.
+  2. **Command**: Overrides the command name.  This is used if provided, otherwise, the class name is used.
+  3. **HideFromUsage**: Allows the implementer to hide the command from the usage printout.  This defaults to false.
+2. The `Argument` attribute offers three optional settings:
+  1. **Description**: Provides a description for the argument.  If this is provided, it is included in the usage printout.
+  2. **Name**: Allows the developer to override the name of the argument.  If this is not provided, the name of the property is used instead.
+  3. **Required**: Indicates that the argument is required.  If this is set to `true`, the CLI utility will throw an exception if this argument is not provided.
+3. Lists are supported, but at this time, only `ICollection<string>` is supported, other type casting has to be done by the body of the command, I.E. in `ExecuteCommand`.
+4. Arguments do not have to be listed as properties in the class to be used.  All parsed arguments are provided in the `arguments` argument in the `ExecuteCommand` function.
+
+## Usage Example
+The screenshot below shows the usage printout of the samples shown in this walkthrough:
+
+![Usage Printout Example](http://i.imgur.com/mzjOHmf.png)
