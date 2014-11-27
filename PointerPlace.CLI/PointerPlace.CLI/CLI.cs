@@ -126,19 +126,20 @@ namespace PointerPlace.CLI
 		/// </summary>
 		/// <param name="args">The arguments passed to the "Main" function of a program</param>
 		/// <param name="escapeCharacter">The escape character used to identify the argument names in the arguments</param>
+		/// <param name="ignoreCase">Whether or not commands and arguments are to be treated case insensitive.  Defaults to true.</param>
 		/// <returns>An int which is the exit code</returns>
-		public static int HandleMain(string[] args, char escapeCharacter = DefaultEscapeChar)
+		public static int HandleMain(string[] args, char escapeCharacter = DefaultEscapeChar, bool ignoreCase = true)
 		{
 			// Parse out the arguments
-			var arguments = Arguments.FromArgs(args, escapeCharacter);
+			var arguments = Arguments.FromArgs(args, escapeCharacter, ignoreCase);
 
 			// Try manual commands first
-			var commandResult = ExecuteManualCommand(arguments);
+			var commandResult = ExecuteManualCommand(arguments, ignoreCase);
 
 			// If we didn't execute a manual command
 			//  try the attribute commands next
 			if (commandResult.HasValue == false)
-				commandResult = ExecuteCommand(arguments, Assembly.GetCallingAssembly());
+				commandResult = ExecuteCommand(arguments, Assembly.GetCallingAssembly(), ignoreCase);
 
 			// If a command was executed, return its exit code
 			if (commandResult.HasValue)
@@ -260,15 +261,11 @@ namespace PointerPlace.CLI
 
 			argumentName = Arguments.FormatArgumentName(argumentName, escapeCharacter);
 
-			string description = String.IsNullOrEmpty(argument.Attribute.Description)
-				? argument.PropertyInfo.Name
-				: argument.Attribute.Description;
-
 			string pattern = argument.Attribute.Required
 				? RequiredArgumentPattern
 				: OptionalArgumentPattern;
 
-			string formattedArgument = String.Format(pattern, argumentName, description);
+			string formattedArgument = String.Format(pattern, argumentName, argumentName);
 
 			PrintColors colors = argument.Attribute.Required
 				? RequiredArgumentColors
@@ -408,14 +405,15 @@ namespace PointerPlace.CLI
 
 		// Executes a manual command using the given arguments
 		//  Returns null if a valid manual command for the given arguments is not found
-		private static int? ExecuteManualCommand(Arguments arguments)
+		private static int? ExecuteManualCommand(Arguments arguments, bool ignoreCase = true)
 		{
 			if (arguments.Count > 0 && ManualCommands.IsValueCreated && ManualCommands.Value.Count > 0)
 			{
 				// Get a hold of the key for the manual command
 				var argument = arguments.Values.First(_ => _.Index == 0);
-				var argumentName = argument.Name.ToLower();
-				var commandKey = ManualCommands.Value.Keys.FirstOrDefault(_ => _.ToLower() == argumentName);
+				var commandKey = ignoreCase
+					? ManualCommands.Value.Keys.FirstOrDefault(_ => String.Equals(_, argument.Name, StringComparison.OrdinalIgnoreCase))
+					: ManualCommands.Value.Keys.FirstOrDefault(_ => String.Equals(_, argument.Name, StringComparison.Ordinal));
 
 				// If the key for a manual command is found, execute the associated manual command
 				if (String.IsNullOrEmpty(commandKey) == false)
@@ -432,18 +430,28 @@ namespace PointerPlace.CLI
 
 		// Executes a command using the given arguments, using the given assembly to find the command
 		//  Returns null if a valid command for the given arguments is not found in the given assembly
-		private static int? ExecuteCommand(Arguments arguments, Assembly assembly)
+		private static int? ExecuteCommand(Arguments arguments, Assembly assembly, bool ignoreCase = true)
 		{
 			if (arguments.Count > 0)
 			{
 				// Tries to find a command using the provided arguments
 				//  within the provided assembly
 				var argument = arguments.Values.FirstOrDefault(_ => _.Index == 0);
-				var argumentName = argument.Name.ToLower();
-				var commandInfo = GetCommands(assembly).FirstOrDefault(_ => _.Attribute.Command != null && _.Attribute.Command.ToLower() == argumentName);
-				commandInfo = commandInfo != null
-					? commandInfo
-					: GetCommands(Assembly.GetCallingAssembly()).FirstOrDefault(_ => _.Type.Name.ToLower() == argumentName);
+				var commands = GetCommands(assembly);
+
+				// Search the given assembly first
+				var commandInfo = ignoreCase
+					? commands.FirstOrDefault(_ => String.Equals(_.Attribute.Command, argument.Name, StringComparison.OrdinalIgnoreCase))
+					: commands.FirstOrDefault(_ => String.Equals(_.Attribute.Command, argument.Name, StringComparison.Ordinal));
+
+				// Search the calling assembly next
+				if (commandInfo == null)
+				{
+					commands = GetCommands(Assembly.GetCallingAssembly());
+					commandInfo = ignoreCase
+						? commands.FirstOrDefault(_ => String.Equals(_.Attribute.Command, argument.Name, StringComparison.OrdinalIgnoreCase))
+						: commands.FirstOrDefault(_ => String.Equals(_.Attribute.Command, argument.Name, StringComparison.Ordinal));
+				}
 
 				// If we found a command, process it
 				if (commandInfo != null)
@@ -457,7 +465,6 @@ namespace PointerPlace.CLI
 					//  the arguments using DI
 					Argument commandArgument;
 					string commandArgumentName;
-					string argumentLower;
 					foreach (var argumentInfo in commandInfo.Arguments)
 					{
 						// Figure out the argument name and get
@@ -465,8 +472,9 @@ namespace PointerPlace.CLI
 						commandArgumentName = String.IsNullOrEmpty(argumentInfo.Attribute.Name)
 							? argumentInfo.PropertyInfo.Name
 							: argumentInfo.Attribute.Name;
-						argumentLower = commandArgumentName.ToLower();
-						commandArgument = arguments.Values.FirstOrDefault(_ => _.Name.ToLower() == argumentLower);
+						commandArgument = ignoreCase
+							? arguments.Values.FirstOrDefault(_ => String.Equals(_.Name, commandArgumentName, StringComparison.OrdinalIgnoreCase))
+							: arguments.Values.FirstOrDefault(_ => String.Equals(_.Name, commandArgumentName, StringComparison.OrdinalIgnoreCase));
 
 						// If we got a hold of the argument
 						//  Assign it

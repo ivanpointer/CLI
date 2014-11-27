@@ -18,7 +18,7 @@ namespace PointerPlace.CLI
 	public class Arguments : Dictionary<string, Argument>
 	{
 
-		#region Constants, Members and Constructors
+		#region Constants and Members
 
 		// The default escape character used for argument names
 		private const char DefaultEscapeChar = '/';
@@ -30,27 +30,29 @@ namespace PointerPlace.CLI
 		// The escape character used to build this set of arguments
 		public char EscapeChar { get; private set; }
 
+		#endregion
+
 		/// <summary>
 		/// Builds the arguments dictionary, using the provided escape character for argument names, which defaults to '/'
 		/// </summary>
 		/// <param name="escapeChar">The escape character to use for argument names; defaults to '/'</param>
-		public Arguments(char escapeChar = DefaultEscapeChar)
+		private Arguments(char escapeChar = DefaultEscapeChar, bool ignoreCase = true)
+			: base(ignoreCase ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal)
 		{
 			ArgumentPattern = new Regex(String.Format(ArgumentPatternFormat, escapeChar, RegexOptions.IgnoreCase | RegexOptions.Multiline));
 		}
-
-		#endregion
 
 		/// <summary>
 		/// Builds an instance of this Arguments dictionary using the provided arguments (from the command line) and escape character, which defaults to '/'
 		/// </summary>
 		/// <param name="args">The string[] args from the Main function of the command line program</param>
 		/// <param name="escapeChar">The escape character to use for argument names; defaults to '/'</param>
+		/// <param name="ignoreCase">Whether or not commands and arguments are to be treated case insensitive.  Defaults to true.</param>
 		/// <returns>The built Arguments dictionary, from the provided args, using the provided escape character</returns>
-		public static Arguments FromArgs(string[] args, char escapeChar = DefaultEscapeChar)
+		public static Arguments FromArgs(string[] args, char escapeChar = DefaultEscapeChar, bool ignoreCase = true)
 		{
 			// Get a new instance of our arguments dictionary, providing the escape character
-			var arguments = new Arguments(escapeChar);
+			var arguments = new Arguments(escapeChar, ignoreCase);
 
 			// Check to see if we have any arguments at all
 			if (args != null && args.Length > 0)
