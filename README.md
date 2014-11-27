@@ -1,4 +1,6 @@
 # CLI (Command Line Interface)
+_A command line interface utility written in and for C#_
+
 The CLI utility provides a quick and simple way to automatically parse arguments and wire up different commands for the command line process.  The CLI also defines a way to setup a clean and formatted "Usage" printout for the CLI.  This is best suited for "job" or "process" style applications, as the interface provided is quite simple.  However, this should address the majority of all console applications.
 
 Two methods of defining commands are provided by the CLI utility; a simpler and more vage method using delegates, and a more difinitive and precise method.  I'll walk through using each with an example here, starting with the simpler method.
