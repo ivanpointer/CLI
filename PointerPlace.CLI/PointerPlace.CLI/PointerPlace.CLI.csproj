@@ -42,7 +42,7 @@
     <Compile Include="Argument.cs" />
     <Compile Include="ArgumentAttribute.cs" />
     <Compile Include="Arguments.cs" />
-    <Compile Include="CLI.cs" />
+    <Compile Include="CLIHandler.cs" />
     <Compile Include="CommandAttribute.cs" />
     <Compile Include="ICLICommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

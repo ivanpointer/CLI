@@ -17,7 +17,7 @@ namespace PointerPlace.CLI.Samples
 	{
 		public static void Main(string[] args)
 		{
-			CLI.Command("Add", (arguments) =>
+			CLIHandler.Command("Add", (arguments) =>
 			{
 				int number1 = Convert.ToInt32(arguments["Number1"].Value);
 				int number2 = Convert.ToInt32(arguments["Number2"].Value);
@@ -25,10 +25,10 @@ namespace PointerPlace.CLI.Samples
 
 				Console.WriteLine(String.Format("{0} + {1} = {2}", number1, number2, solution));
 
-				return CLI.SUCCESS;
+				return CLIHandler.SUCCESS;
 			});
 
-			CLI.Command("Subtract", (arguments) =>
+			CLIHandler.Command("Subtract", (arguments) =>
 			{
 				int number1 = Convert.ToInt32(arguments["Number1"].Value);
 				int number2 = Convert.ToInt32(arguments["Number2"].Value);
@@ -36,10 +36,10 @@ namespace PointerPlace.CLI.Samples
 
 				Console.WriteLine(String.Format("{0} - {1} = {2}", number1, number2, solution));
 
-				return CLI.SUCCESS;
+				return CLIHandler.SUCCESS;
 			}, "Subtracts a /Number1 from a /Number2 and prints the solution");
 
-			var exitCode = CLI.HandleMain(args);
+			var exitCode = CLIHandler.HandleMain(args);
 
 			Console.WriteLine(String.Format("{1}Command completed with exit code {0}{1}", exitCode, Environment.NewLine));
 			Console.WriteLine("Press [Enter] to exit");
@@ -65,7 +65,7 @@ namespace PointerPlace.CLI.Samples
 
 			Console.WriteLine(String.Format("{0} * {1} = {2}", Number1, Number2, product));
 
-			return CLI.SUCCESS;
+			return CLIHandler.SUCCESS;
 		}
 	}
 
@@ -94,7 +94,7 @@ namespace PointerPlace.CLI.Samples
 
 			Console.WriteLine(String.Format("Sum: {0}", runningTotal));
 
-			return CLI.SUCCESS;
+			return CLIHandler.SUCCESS;
 		}
 	}
 

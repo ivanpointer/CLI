@@ -17,7 +17,7 @@ namespace PointerPlace.CLI
 	/// Provides command line interface functionality to a command
 	/// line application
 	/// </summary>
-	public static class CLI
+	public static class CLIHandler
 	{
 
 		#region Internal Classes/Structs
