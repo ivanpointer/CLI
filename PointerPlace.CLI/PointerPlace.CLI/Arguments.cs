@@ -166,5 +166,24 @@ namespace PointerPlace.CLI
 			return false;
 		}
 
+		/// <summary>
+		/// Overriden index operator to make this null safe
+		/// </summary>
+		/// <param name="key">The key of the argument to retrieve</param>
+		/// <returns>The argument identified by key, or null if not found</returns>
+		new public Argument this[string key]
+		{
+			get
+			{
+				return this.ContainsKey(key)
+					? base[key]
+					: null;
+			}
+			set
+			{
+				base[key] = value;
+			}
+		}
+
 	}
 }

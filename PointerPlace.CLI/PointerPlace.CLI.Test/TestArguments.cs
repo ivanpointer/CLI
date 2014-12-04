@@ -126,6 +126,20 @@ namespace PointerPlace.CLI.Test
 			Assert.IsTrue(goodbyeArgument.Values.Contains("World!"));
 			Assert.IsTrue(goodbyeArgument.Values.Contains("Orphan!"));
 		}
+
+		[TestMethod]
+		public void TestNullValue()
+		{
+			var args = new string[]
+			{
+				"/Hello", "World!", "Orphan!"
+			};
+
+			var arguments = Arguments.FromArgs(args);
+
+			var nullValue = arguments["NotThere!"];
+			Assert.IsNull(nullValue);
+		}
 	}
 
 }
