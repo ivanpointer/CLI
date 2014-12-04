@@ -48,11 +48,11 @@ The things to note:
 ## Using Delegate Functions
 The first approach allows for a simpler, slimmer solution and is best suited for smaller console apps that are just used to do just a few small tasks.  Everything can be contained inside the `Main` method of `Program.cs`.  Let's get right down to it:
 
-![Delegate Example](http://i.imgur.com/sf19znU.png)
+![Delegate Example](http://i.imgur.com/vs7jDOY.png)
 
-1. The first thing to look it is where we add an "Add" command.  This is done by calling `CLI.Command(string commandName, Func<Arguments, int> command, string helpText = null)`.  `commandName` defines the name of the command, `command` defines the function body of the command, and the optional `helpText` is used for the usage printout as text to describe the command.  This first example shows this method being called without any help text.  This is the simplest possible implementation of a command in the CLI.
+1. The first thing to look it is where we add an "Add" command.  This is done by calling `CLIHandler.Command(string commandName, Func<Arguments, int> command, string helpText = null)`.  `commandName` defines the name of the command, `command` defines the function body of the command, and the optional `helpText` is used for the usage printout as text to describe the command.  This first example shows this method being called without any help text.  This is the simplest possible implementation of a command in the CLI.
 2. The second command is basically the same as the first, except that in this case, the help text is provided.
-3. Lastly once we are done setting up the commands, we call `HandleMain` to have CLI handle the routing.  The full signature of the `HandleMain` function is: `CLI.HandleMain(string[] args, char escapeCharacter = DefaultEscapeChar, bool ignoreCase = true)`.  This example shows only the simples implementation: passing in the `string[] args`.  The escape character and ignore case arguments are optional:
+3. Lastly once we are done setting up the commands, we call `HandleMain` to have CLI handle the routing.  The full signature of the `HandleMain` function is: `CLIHandler.HandleMain(string[] args, char escapeCharacter = DefaultEscapeChar, bool ignoreCase = true)`.  This example shows only the simples implementation: passing in the `string[] args`.  The escape character and ignore case arguments are optional:
   1. **escapeCharacter**: The character that is used to signify a command name.  The escape character comes before the command name.  The default escape character is `/`.
   2. **ignoreCase**: Ignore case indicates whether or not to use case insensitive searches on the command and argument names.  By default, ignore case is enabled, meaning command and argument names are not case sensitive.
 
@@ -60,7 +60,7 @@ The first approach allows for a simpler, slimmer solution and is best suited for
 ### A Simple Example
 Classes and attributes are a more advanced method of using the CLI utility.  It is best suited for a larger or more "public facing" console application and allows for more encapsulation and modularizaiton.  This approach also provides more methods for including more detailed information in the usage printout, making this more useful as a "shared" interface.  Let's start by taking a look at the simplest implementation of a class decorated with the attributes:
 
-![Command Class Example](http://i.imgur.com/qXMv8GK.png)
+![Command Class Example](http://i.imgur.com/0XpRLXa.png)
 
 1. The first step is to implement the `ICLICommand` interface and decorate your class with the `Command` attribute.  Without both, the CLI utility will ignore the class.
 2. Next, you will need to define your arguments.  These are properties decorated with the `Argument` attribute.  The types of the attributes are restricted: either a `ICollection<string>` or primitive types, such as `string`, `int` or any other type directly convertable from a `string` are supported.
@@ -69,7 +69,7 @@ Classes and attributes are a more advanced method of using the CLI utility.  It 
 ### A Full Example
 The attributes allow for more more fine-tuned control of the commands.  Let's jump into an example:
 
-![Full Command Class Example](http://i.imgur.com/itpZp97.png)
+![Full Command Class Example](http://i.imgur.com/xDJifUa.png)
 
 1. The `Command` attribute has three optional settings:
   1. **Description**: Provides a description for the command.  This is used for the usage printout to describe the command.  This walkthrough shows an example of the usage printout later.
