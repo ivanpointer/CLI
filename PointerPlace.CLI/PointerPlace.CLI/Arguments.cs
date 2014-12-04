@@ -152,5 +152,19 @@ namespace PointerPlace.CLI
 			return FormatArgumentName(argumentName, EscapeChar);
 		}
 
+		/// <summary>
+		/// Checks this arguments dictionary for the flag, returning true if the flag is set
+		/// </summary>
+		/// <param name="flagName">The name of the flag to check for</param>
+		/// <returns>A bool indicating whether or not the flag is set</returns>
+		public bool CheckFlag(string flagName)
+		{
+			var argument = this[flagName];
+			if (argument != null)
+				return argument.IsFlag;
+
+			return false;
+		}
+
 	}
 }

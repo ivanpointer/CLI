@@ -65,6 +65,7 @@ namespace PointerPlace.CLI.Test
 			var goodbyeFlag = arguments["GoodbyeFlag"];
 
 			Assert.IsTrue(goodbyeFlag.IsFlag);
+			Assert.IsTrue(arguments.CheckFlag("GoodbyeFlag"));
 		}
 
 		[TestMethod]
@@ -83,6 +84,7 @@ namespace PointerPlace.CLI.Test
 			var imAFlag = arguments["ImAFlag"];
 
 			Assert.IsTrue(imAFlag.IsFlag);
+			Assert.IsTrue(arguments.CheckFlag("ImAFlag"));
 		}
 
 		[TestMethod]
