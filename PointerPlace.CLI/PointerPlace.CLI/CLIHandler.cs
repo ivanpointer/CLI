@@ -131,28 +131,15 @@ namespace PointerPlace.CLI
 		public static int HandleMain(string[] args, char escapeCharacter = DefaultEscapeChar, bool ignoreCase = true)
 		{
 			// Parse out the arguments
-			var parsedArgs = Arguments.FromArgs(args, escapeCharacter, ignoreCase);
+			var arguments = Arguments.FromArgs(args, escapeCharacter, ignoreCase);
 
-			return HandleMain(parsedArgs, escapeCharacter, ignoreCase);
-		}
-
-		/// <summary>
-		/// The function for handling "Main".  This is the function to call for using
-		/// the CLI to handle the program
-		/// </summary>
-		/// <param name="args">The arguments passed to the "Main" function of a program, parsed into Arguments</param>
-		/// <param name="escapeCharacter">The escape character used to identify the argument names in the arguments</param>
-		/// <param name="ignoreCase">Whether or not commands and arguments are to be treated case insensitive.  Defaults to true.</param>
-		/// <returns>An int which is the exit code</returns>
-		public static int HandleMain(Arguments args, char escapeCharacter = DefaultEscapeChar, bool ignoreCase = true)
-		{
 			// Try manual commands first
-			var commandResult = ExecuteManualCommand(args, ignoreCase);
+			var commandResult = ExecuteManualCommand(arguments, ignoreCase);
 
 			// If we didn't execute a manual command
 			//  try the attribute commands next
 			if (commandResult.HasValue == false)
-				commandResult = ExecuteCommand(args, Assembly.GetCallingAssembly(), ignoreCase);
+				commandResult = ExecuteCommand(arguments, Assembly.GetCallingAssembly(), ignoreCase);
 
 			// If a command was executed, return its exit code
 			if (commandResult.HasValue)
@@ -228,8 +215,8 @@ namespace PointerPlace.CLI
 			string commandName = Arguments.FormatArgumentName(command.Name, escapeCharacter);
 			commandName = String.Format(CommandPattern, commandName);
 			Write(commandName, CommandColors);
-			
-			if(!String.IsNullOrEmpty(command.HelpText))
+
+			if (!String.IsNullOrEmpty(command.HelpText))
 				WriteLine(String.Format(CommandDescriptionPattern, command.HelpText), CommandDescriptionColors);
 
 			WriteLine(String.Empty);
@@ -302,7 +289,7 @@ namespace PointerPlace.CLI
 
 			modifierList.Add(argument.PropertyInfo.PropertyType.Name);
 
-			if(argument.Attribute.Required)
+			if (argument.Attribute.Required)
 				modifierList.Add(RequiredModifier);
 
 			var modifiers = String.Join(",", modifierList);
