@@ -7,6 +7,22 @@ The CLI utility provides a quick and simple way to automatically parse arguments
 
 Two methods of defining commands are provided by the CLI utility; a simpler and more vague method using delegates, and a more definitive and precise method. I'll walk through using each with an example here, starting with the simpler method.
 
+## Quick Start
+
+1. Install the NuGet package `PointerPlace.CLI`
+2. Wire your main class to handle main:
+
+```
+    internal class Program
+    {
+        static int Main(string[] args)
+        {
+            return CLIHandler.HandleMain(args);
+        }
+    }
+```
+3. Implement the commands, either using separate classes, or inline commands, documented below.
+
 ## Arguments
 The CLI utility provides a couple classes `Argument` and `Arguments` which assist in parsing the `string[] args` arguments passed to a console application from the command line. `Argument` defines a single argument, and `Arguments` is a dictionary which houses the `Argument` instances.  These are used as an integral part of the CLI utility, so let's a deeper look into these objects.
 
