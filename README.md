@@ -12,7 +12,7 @@ Two methods of defining commands are provided by the CLI utility; a simpler and 
 1. Install the NuGet package `PointerPlace.CLI`
 2. Wire your main class to handle main:
 
-```
+```cs
     internal class Program
     {
         static int Main(string[] args)
