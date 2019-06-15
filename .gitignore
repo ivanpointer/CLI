@@ -6,3 +6,4 @@
 /PointerPlace.CLI/**/obj
 /.vs
 /PointerPlace.CLI/.vs/PointerPlace.CLI/v15
+/PointerPlace.CLI/NuGet/*.nupkg
