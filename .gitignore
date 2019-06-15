@@ -2,11 +2,7 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
+/PointerPlace.CLI/**/bin
+/PointerPlace.CLI/**/obj
 /.vs
 /PointerPlace.CLI/.vs/PointerPlace.CLI/v15
-/PointerPlace.CLI/PointerPlace.CLI/bin/Release/netstandard2.0
-/PointerPlace.CLI/PointerPlace.CLI/obj/Release/netstandard2.0
-/PointerPlace.CLI/PointerPlace.CLI.Samples/obj/Release/netstandard2.0
-/PointerPlace.CLI/PointerPlace.CLI.Samples/bin/Release/netstandard2.0
-/PointerPlace.CLI/PointerPlace.CLI.Test/bin/Release/netcoreapp2.2
-/PointerPlace.CLI/PointerPlace.CLI.Test/obj/Release/netcoreapp2.2

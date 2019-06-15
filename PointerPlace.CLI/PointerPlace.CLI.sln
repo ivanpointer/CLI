@@ -9,11 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PointerPlace.CLI.Samples", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PointerPlace.CLI.Test", "PointerPlace.CLI.Test\PointerPlace.CLI.Test.csproj", "{6CB965D1-7C02-4B5A-BACA-A41B82EDC332}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{272A44F8-DAB9-468D-9910-1F81584018DC}"
-	ProjectSection(SolutionItems) = preProject
-		NuGet\PointerPlace.CLI.nuspec = NuGet\PointerPlace.CLI.nuspec
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
