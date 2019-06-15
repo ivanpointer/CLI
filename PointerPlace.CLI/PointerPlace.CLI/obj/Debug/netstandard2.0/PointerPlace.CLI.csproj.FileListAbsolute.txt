@@ -1,0 +1,8 @@
+C:\Users\ivan.pointer\Source\Repos\CLI\PointerPlace.CLI\PointerPlace.CLI\bin\Debug\netstandard2.0\PointerPlace.CLI.deps.json
+C:\Users\ivan.pointer\Source\Repos\CLI\PointerPlace.CLI\PointerPlace.CLI\bin\Debug\netstandard2.0\PointerPlace.CLI.dll
+C:\Users\ivan.pointer\Source\Repos\CLI\PointerPlace.CLI\PointerPlace.CLI\bin\Debug\netstandard2.0\PointerPlace.CLI.pdb
+C:\Users\ivan.pointer\Source\Repos\CLI\PointerPlace.CLI\PointerPlace.CLI\obj\Debug\netstandard2.0\PointerPlace.CLI.csproj.CoreCompileInputs.cache
+C:\Users\ivan.pointer\Source\Repos\CLI\PointerPlace.CLI\PointerPlace.CLI\obj\Debug\netstandard2.0\PointerPlace.CLI.AssemblyInfoInputs.cache
+C:\Users\ivan.pointer\Source\Repos\CLI\PointerPlace.CLI\PointerPlace.CLI\obj\Debug\netstandard2.0\PointerPlace.CLI.AssemblyInfo.cs
+C:\Users\ivan.pointer\Source\Repos\CLI\PointerPlace.CLI\PointerPlace.CLI\obj\Debug\netstandard2.0\PointerPlace.CLI.dll
+C:\Users\ivan.pointer\Source\Repos\CLI\PointerPlace.CLI\PointerPlace.CLI\obj\Debug\netstandard2.0\PointerPlace.CLI.pdb

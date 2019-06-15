@@ -1,0 +1,12 @@
+C:\Users\ivan.pointer\Source\Repos\CLI\PointerPlace.CLI\PointerPlace.CLI.Samples\bin\Debug\netstandard2.0\PointerPlace.CLI.Samples.deps.json
+C:\Users\ivan.pointer\Source\Repos\CLI\PointerPlace.CLI\PointerPlace.CLI.Samples\bin\Debug\netstandard2.0\PointerPlace.CLI.Samples.dll
+C:\Users\ivan.pointer\Source\Repos\CLI\PointerPlace.CLI\PointerPlace.CLI.Samples\bin\Debug\netstandard2.0\PointerPlace.CLI.Samples.pdb
+C:\Users\ivan.pointer\Source\Repos\CLI\PointerPlace.CLI\PointerPlace.CLI.Samples\bin\Debug\netstandard2.0\PointerPlace.CLI.dll
+C:\Users\ivan.pointer\Source\Repos\CLI\PointerPlace.CLI\PointerPlace.CLI.Samples\bin\Debug\netstandard2.0\PointerPlace.CLI.pdb
+C:\Users\ivan.pointer\Source\Repos\CLI\PointerPlace.CLI\PointerPlace.CLI.Samples\obj\Debug\netstandard2.0\PointerPlace.CLI.Samples.csprojAssemblyReference.cache
+C:\Users\ivan.pointer\Source\Repos\CLI\PointerPlace.CLI\PointerPlace.CLI.Samples\obj\Debug\netstandard2.0\PointerPlace.CLI.Samples.csproj.CoreCompileInputs.cache
+C:\Users\ivan.pointer\Source\Repos\CLI\PointerPlace.CLI\PointerPlace.CLI.Samples\obj\Debug\netstandard2.0\PointerPlace.CLI.Samples.AssemblyInfoInputs.cache
+C:\Users\ivan.pointer\Source\Repos\CLI\PointerPlace.CLI\PointerPlace.CLI.Samples\obj\Debug\netstandard2.0\PointerPlace.CLI.Samples.AssemblyInfo.cs
+C:\Users\ivan.pointer\Source\Repos\CLI\PointerPlace.CLI\PointerPlace.CLI.Samples\obj\Debug\netstandard2.0\PointerPlace.CLI.Samples.csproj.CopyComplete
+C:\Users\ivan.pointer\Source\Repos\CLI\PointerPlace.CLI\PointerPlace.CLI.Samples\obj\Debug\netstandard2.0\PointerPlace.CLI.Samples.dll
+C:\Users\ivan.pointer\Source\Repos\CLI\PointerPlace.CLI\PointerPlace.CLI.Samples\obj\Debug\netstandard2.0\PointerPlace.CLI.Samples.pdb
