@@ -51,9 +51,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PointerPlace.CLI\PointerPlace.CLI.csproj">
+    <ProjectReference Include="..\PointerPlace.CLI.OLD\PointerPlace.CLI.OLD.csproj">
       <Project>{ad02b8e1-3da2-4eb8-ba46-f62fb0f4dba4}</Project>
-      <Name>PointerPlace.CLI</Name>
+      <Name>PointerPlace.CLI.OLD</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

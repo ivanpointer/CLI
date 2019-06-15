@@ -1,0 +1,10 @@
+﻿{
+    "targets": [{
+        "name": "trace",
+        "type": "NuLog.Targets.TraceTarget"
+    }],
+    "rules": [{
+        "include": ["*"],
+        "writeTo": ["trace"]
+    }]
+}

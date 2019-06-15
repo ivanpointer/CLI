@@ -1,0 +1,12 @@
+C:\Users\ivan.pointer\Source\Repos\CLI\PointerPlace.CLI\PointerPlace.CLI\bin\Debug\PointerPlace.CLI.dll
+C:\Users\ivan.pointer\Source\Repos\CLI\PointerPlace.CLI\PointerPlace.CLI\bin\Debug\PointerPlace.CLI.pdb
+C:\Users\ivan.pointer\Source\Repos\CLI\PointerPlace.CLI\PointerPlace.CLI\obj\Debug\PointerPlace.CLI.OLD.csprojAssemblyReference.cache
+C:\Users\ivan.pointer\Source\Repos\CLI\PointerPlace.CLI\PointerPlace.CLI\obj\Debug\PointerPlace.CLI.OLD.csproj.CoreCompileInputs.cache
+C:\Users\ivan.pointer\Source\Repos\CLI\PointerPlace.CLI\PointerPlace.CLI\obj\Debug\PointerPlace.CLI.dll
+C:\Users\ivan.pointer\Source\Repos\CLI\PointerPlace.CLI\PointerPlace.CLI\obj\Debug\PointerPlace.CLI.pdb
+C:\Users\ivan.pointer\Source\Repos\CLI\PointerPlace.CLI\PointerPlace.CLI.OLD\bin\Debug\PointerPlace.CLI.dll
+C:\Users\ivan.pointer\Source\Repos\CLI\PointerPlace.CLI\PointerPlace.CLI.OLD\bin\Debug\PointerPlace.CLI.pdb
+C:\Users\ivan.pointer\Source\Repos\CLI\PointerPlace.CLI\PointerPlace.CLI.OLD\obj\Debug\PointerPlace.CLI.OLD.csprojAssemblyReference.cache
+C:\Users\ivan.pointer\Source\Repos\CLI\PointerPlace.CLI\PointerPlace.CLI.OLD\obj\Debug\PointerPlace.CLI.OLD.csproj.CoreCompileInputs.cache
+C:\Users\ivan.pointer\Source\Repos\CLI\PointerPlace.CLI\PointerPlace.CLI.OLD\obj\Debug\PointerPlace.CLI.dll
+C:\Users\ivan.pointer\Source\Repos\CLI\PointerPlace.CLI\PointerPlace.CLI.OLD\obj\Debug\PointerPlace.CLI.pdb
